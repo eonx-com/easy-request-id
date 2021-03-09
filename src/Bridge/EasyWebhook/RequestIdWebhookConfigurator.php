@@ -7,12 +7,10 @@ namespace EonX\EasyRequestId\Bridge\EasyWebhook;
 use EonX\EasyRequestId\Interfaces\RequestIdKeysAwareInterface;
 use EonX\EasyRequestId\Interfaces\RequestIdServiceInterface;
 use EonX\EasyRequestId\Traits\RequestIdKeysAwareTrait;
-use EonX\EasyWebhook\Interfaces\StackInterface;
+use EonX\EasyWebhook\Configurators\AbstractWebhookConfigurator;
 use EonX\EasyWebhook\Interfaces\WebhookInterface;
-use EonX\EasyWebhook\Interfaces\WebhookResultInterface;
-use EonX\EasyWebhook\Middleware\AbstractConfigureOnceMiddleware;
 
-final class RequestIdWebhookMiddleware extends AbstractConfigureOnceMiddleware implements RequestIdKeysAwareInterface
+final class RequestIdWebhookConfigurator extends AbstractWebhookConfigurator implements RequestIdKeysAwareInterface
 {
     use RequestIdKeysAwareTrait;
 
@@ -28,16 +26,12 @@ final class RequestIdWebhookMiddleware extends AbstractConfigureOnceMiddleware i
         parent::__construct($priority);
     }
 
-    protected function doProcess(WebhookInterface $webhook, StackInterface $stack): WebhookResultInterface
+    public function configure(WebhookInterface $webhook): void
     {
         $webhook->mergeHttpClientOptions([
             'headers' => [
                 $this->getCorrelationIdKey() => $this->requestIdService->getCorrelationId(),
             ],
         ]);
-
-        return $stack
-            ->next()
-            ->process($webhook, $stack);
     }
 }
