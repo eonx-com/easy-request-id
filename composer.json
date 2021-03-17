@@ -1,0 +1,32 @@
+{
+    "name": "eonx-com/easy-request-id",
+    "description": "Uniquely identify each request across multiple projects",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": "^7.2",
+        "eonx-com/easy-random": "^3.1",
+        "eonx-com/easy-utils": "^3.1"
+    },
+    "require-dev": {
+        "ramsey/uuid": "^3.9",
+        "phpunit/phpunit": "^8.4 || ^9.5",
+        "laravel/lumen-framework": "^5.5",
+        "symfony/symfony": "^4.4 || ^5.1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "EonX\\EasyRequestId\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EonX\\EasyRequestId\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.1-dev"
+        }
+    }
+}
