@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace EonX\EasyRequestId\Tests\Stub\HttpKernel;
+namespace EonX\EasyRequestId\Tests\Stub\Kernel;
 
 use EonX\EasyRandom\Bundle\EasyRandomBundle;
 use EonX\EasyRequestId\Bundle\EasyRequestIdBundle;
