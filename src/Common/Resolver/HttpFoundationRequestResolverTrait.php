@@ -6,7 +6,7 @@ namespace EonX\EasyRequestId\Common\Resolver;
 use EonX\EasyRequestId\Common\Provider\RequestIdProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-trait ResolvesFromHttpFoundationRequestTrait
+trait HttpFoundationRequestResolverTrait
 {
     private function setResolver(Request $request, RequestIdProviderInterface $requestIdProvider): void
     {
